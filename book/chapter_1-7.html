@@ -166,7 +166,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="code-running-the-first-process"><a class="header" href="#code-running-the-first-process">Code: Running the first process</a></h1>
+                        <ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행 (this page)</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="code-running-the-first-process"><a class="header" href="#code-running-the-first-process">Code: Running the first process</a></h1>
 <p>Now that the first process’s state is prepared, it is time to run it. After main calls userinit, mpmain calls scheduler to start running processes (1257). Scheduler (2758) looks for a process with p-&gt;state set to RUNNABLE, and there’s only one: initproc. It sets the per-cpu variable proc to the process it found and calls switchuvm to tell the hardware to start using the target process’s page table (1879). Changing page tables while executing in the kernel works because setupkvm causes all processes’ page tables to have identical mappings for kernel code and data. switchuvm also sets up a task state segment SEG_TSS that instructs the hardware to execute system calls and interrupts on the process’s kernel stack. We will re-examine the task state segment in Chapter 3.</p>
 <p>첫 번째 프로세스의 상태가 준비되었으므로 이를 실행할 시간입니다. main 함수가 userinit를 호출한 후, mpmain은 프로세스를 실행하기 위해 스케줄러를 호출합니다(1257). 스케줄러(2758)는 p-&gt;state가 RUNNABLE로 설정된 프로세스를 찾아봅니다. 여기서는 initproc라는 하나의 프로세스만 있습니다. 스케줄러는 찾은 프로세스를 per-cpu 변수 proc에 설정하고, 해당 프로세스의 페이지 테이블을 사용하도록 하드웨어에 지시하기 위해 switchuvm 함수를 호출합니다(1879). 커널에서 실행 중에 페이지 테이블을 변경하는 것은 setupkvm 때문에 모든 프로세스의 페이지 테이블이 커널 코드와 데이터에 대해 동일한 매핑을 갖게 되기 때문에 작동합니다. switchuvm 함수는 또한 프로세스의 커널 스택에서 시스템 호출과 인터럽트를 실행하도록 하드웨어에 지시하는 작업 상태 세그먼트 SEG_TSS를 설정합니다. 작업 상태 세그먼트에 대해서는 3장에서 다시 살펴보겠습니다.</p>
 <p>scheduler now sets p-&gt;state to RUNNING and calls swtch (3059) to perform a context switch to the target process’s kernel thread. swtch first saves the current registers. The current context is not a process but rather a special per-cpu scheduler context, so scheduler tells swtch to save the current hardware registers in per-cpu storage (cpu-&gt;scheduler) rather than in any process’s kernel thread context. swtch then loads the saved registers of the target kernel thread (p-&gt;context) into the x86 hardware registers, including the stack pointer and instruction pointer. We’ll examine swtch in more detail in Chapter 5. The final ret instruction (3078) pops the target process’s %eip from the stack, finishing the context switch. Now the processor is running on the kernel stack of process p.</p>

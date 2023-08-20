@@ -166,7 +166,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="the-first-system-call-exec"><a class="header" href="#the-first-system-call-exec">The first system call: exec</a></h1>
+                        <ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec (this page)</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="the-first-system-call-exec"><a class="header" href="#the-first-system-call-exec">The first system call: exec</a></h1>
 <p>Now that we have seen how the kernel provides strong isolation for processes, let’s look at how a user-level process re-enters the kernel to ask for services that it cannot perform itself.</p>
 <p>이제 우리는 커널이 프로세스에 대한 강력한 격리를 제공하는 방법을 살펴보았으니, 이제 사용자 레벨 프로세스가 스스로 수행할 수 없는 서비스를 요청하기 위해 커널로 다시 진입하는 방법을 살펴보겠습니다.</p>
 <p>The first action of <code>initcode.S</code> is to invoke the exec system call. As we saw in Chapter 0, exec replaces the memory and registers of the current process with a new program, but it leaves the file descriptors, process id, and parent process unchanged.</p>

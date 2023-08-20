@@ -166,7 +166,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="code-creating-the-first-process"><a class="header" href="#code-creating-the-first-process">Code: creating the first process</a></h1>
+                        <ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성 (this page)</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="code-creating-the-first-process"><a class="header" href="#code-creating-the-first-process">Code: creating the first process</a></h1>
 <p>Now we’ll look at how the kernel creates user-level processes and ensures that they are strongly isolated.</p>
 <p>이제 커널이 사용자 수준 프로세스를 생성하고 이들이 강력하게 격리되도록 보장하는 방법을 살펴보겠습니다.</p>
 <p>After main (1217) initializes several devices and subsystems, it creates the first process by calling userinit (2520). Userinit’s first action is to call <code>allocproc</code>. The job of <code>allocproc</code> (2473) is to allocate a slot (a struct proc) in the process table and to initialize the parts of the process’s state required for its kernel thread to execute. <code>allocproc</code> is called for each new process, while userinit is called only for the very first process. <code>allocproc</code> scans the proc table for a slot with state UNUSED (2480-2482). When it finds an unused slot, <code>allocproc</code> sets the state to EMBRYO to mark it as used and gives the process a unique pid (2469-2489). Next, it tries to allocate a kernel stack for the process’s kernel thread. If the memory allocation fails, <code>allocproc</code> changes the state back to UNUSED and returns zero to signal failure.</p>

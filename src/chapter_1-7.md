@@ -1,3 +1,15 @@
+- [운영체제 구조](./chapter_1.md)
+    - [물리적 리소스 추상화](./chapter_1-1.md)
+    - [유저모드, 커널모드 그리고 시스템콜](./chatper_1-2.md)
+    - [커널 구조](./chapter_1-3.md)
+    - [프로세스 개요](./chapter_1-4.md)
+    - [코드: 첫 번째 주소 공간](./chapter_1-5.md)
+    - [코드: 첫 번째 프로세스 생성](./chapter_1-6.md)
+    - [코드: 첫 번째 프로세스 실행 (this page)](./chapter_1-7.md)
+    - [코드: 첫 번째 시스템콜 - exec](./chapter_1-8.md)
+    - [현실 세계에서](./chapter_1-9.md)
+    - [연습문제](./chapter_1-10.md)
+
 # Code: Running the first process
 
 Now that the first process’s state is prepared, it is time to run it. After main calls userinit, mpmain calls scheduler to start running processes (1257). Scheduler (2758) looks for a process with p->state set to RUNNABLE, and there’s only one: initproc. It sets the per-cpu variable proc to the process it found and calls switchuvm to tell the hardware to start using the target process’s page table (1879). Changing page tables while executing in the kernel works because setupkvm causes all processes’ page tables to have identical mappings for kernel code and data. switchuvm also sets up a task state segment SEG_TSS that instructs the hardware to execute system calls and interrupts on the process’s kernel stack. We will re-examine the task state segment in Chapter 3.

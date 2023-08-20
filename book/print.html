@@ -168,11 +168,18 @@
                 <div id="content" class="content">
                     <main>
                         <ul>
-<li><a href="./chapter_1.html">운영체제 구조 (이 페이지)</a>
+<li><a href="./chapter_1.html">운영체제 구조 (this page)</a>
 <ul>
 <li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
 <li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
 <li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
 </ul>
 </li>
 </ul>
@@ -186,9 +193,16 @@
 <div style="break-before: page; page-break-before: always;"></div><ul>
 <li><a href="./chapter_1.html">운영체제 구조</a>
 <ul>
-<li><a href="./chapter_1-1.html">물리적 리소스 추상화(이 페이지)</a></li>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화 (this page)</a></li>
 <li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
 <li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
 </ul>
 </li>
 </ul>
@@ -211,8 +225,15 @@
 <li><a href="./chapter_1.html">운영체제 구조</a>
 <ul>
 <li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
-<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜(이 페이지)</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜 (this page)</a></li>
 <li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
 </ul>
 </li>
 </ul>
@@ -228,7 +249,14 @@
 <ul>
 <li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
 <li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
-<li><a href="./chapter_1-3.html">커널 구조(이 페이지)</a></li>
+<li><a href="./chapter_1-3.html">커널 구조 (this page)</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
 </ul>
 </li>
 </ul>
@@ -248,7 +276,23 @@
 <p>마이크로커널에서 커널 인터페이스는 응용 프로그램을 시작하는데 필요한 몇 가지 저수준 함수, 메시지를 보내는 함수, 장치 하드웨어에 접근하는 함수 등으로 구성됩니다. 이 구성은 커널을 비교적 간단하게 유지할 수 있게 해주며, 대부분의 운영체제 기능이 사용자 수준 서버에 위치하게 됩니다.</p>
 <p>Xv6 is implemented as a monolithic kernel, following most Unix operating systems. Thus, in xv6, the kernel interface corresponds to the operating system interface, and the kernel implements the complete operating system. Since xv6 doesn’t provide many services, its kernel is smaller than some microkernels.</p>
 <p>xv6는 대부분의 유닉스 운영체제와 같이 모놀리식 커널(monolithic kernel)로 구현되었습니다. 따라서 xv6에서 커널 인터페이스는 운영체제 인터페이스에 해당하며, 커널은 완전한 운영체제를 구현합니다. xv6는 많은 서비스를 제공하지 않기 때문에 마이크로커널들보다 커널이 작습니다.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="process-overview"><a class="header" href="#process-overview">Process overview</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요 (this page)</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="process-overview"><a class="header" href="#process-overview">Process overview</a></h1>
 <p>The unit of isolation in xv6 (as in other Unix operating systems) is a process. The process abstraction prevents one process from wrecking or spying on another process’s memory, CPU, file descriptors, etc. It also prevents a process from wrecking the kernel itself, so that a process can’t subvert the kernel’s isolation mechanisms. The kernel must implement the process abstraction with care because a buggy or malicious application may trick the kernel or hardware in doing something bad (e.g., circumventing enforced isolation). The mechanisms used by the kernel to implement processes include the user/kernel mode flag, address spaces, and time-slicing of threads.</p>
 <p>xv6(그리고 다른 유닉스 운영 체제들)에서 격리의 단위는 프로세스입니다. 프로세스 추상화는 한 프로세스가 다른 프로세스의 메모리, CPU, 파일 디스크립터 등을 파괴하거나 감시하지 못하도록 방지합니다. 또한 프로세스가 커널 자체를 파괴하지 못하도록 하여 프로세스가 커널의 격리 메커니즘을 훼손하지 못하도록 합니다. 커널은 프로세스 추상화를 신중하게 구현해야 합니다. 왜냐하면 버그가 있는 애플리케이션이나 악의적인 애플리케이션이 커널이나 하드웨어를 속여서 나쁜 작업(예: 격리 회피)을 수행할 수 있기 때문입니다. 커널이 프로세스를 구현하는 데 사용하는 메커니즘에는 사용자/커널 모드 플래그, 주소 공간, 스레드의 시간 분할 등이 포함됩니다.</p>
 <p>To help enforce isolation, the process abstraction provides the illusion to a program that it has its own private machine. A process provides a program with what appears to be a private memory system, or address space, which other processes cannot read or write. A process also provides the program with what appears to be its own CPU to execute the program’s instructions.</p>
@@ -269,7 +313,23 @@
 <p><img src="assets/fig-1-3.png" alt="Figure 1-3" /></p>
 <p><code>p-&gt;state</code> indicates whether the process is allocated, ready to run, running, waiting for I/O, or exiting. <code>p-&gt;pgdir</code> holds the process’s page table, in the format that the x86 hardware expects. xv6 causes the paging hardware to use a process’s p-&gt;pgdir when executing that process. A process’s page table also serves as the record of the addresses of the physical pages allocated to store the process’s memory.</p>
 <p><code>p-&gt;state</code>는 프로세스가 할당된 상태인지, 실행 준비가 된 상태인지, 실행 중인 상태인지, I/O를 기다리는 상태인지, 또는 종료 상태인지를 나타냅니다. <code>p-&gt;pgdir</code>는 프로세스의 페이지 테이블을 x86 하드웨어가 예상하는 형식으로 보유합니다. xv6는 프로세스를 실행할 때 해당 프로세스의 p-&gt;pgdir을 사용하도록 페이징 하드웨어를 설정합니다. 프로세스의 페이지 테이블은 또한 프로세스의 메모리를 저장하기 위해 할당된 물리적 페이지의 주소를 기록하는 역할도 합니다.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="code-the-first-address-space"><a class="header" href="#code-the-first-address-space">Code: the first address space</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간 (this page)</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="code-the-first-address-space"><a class="header" href="#code-the-first-address-space">Code: the first address space</a></h1>
 <p>To make the xv6 organization more concrete, we’ll look how the kernel creates the first address space (for itself), how the kernel creates and starts the first process, and how that process performs the first system call. By tracing these operations we see in detail how xv6 provides strong isolation for processes. The first step in providing strong isolation is setting up the kernel to run in its own address space.</p>
 <p>xv6의 구조를 더 구체적으로 이해하기 위해, 커널이 첫 번째 주소 공간(자체를 위한 것)을 어떻게 생성하는지, 커널이 첫 번째 프로세스를 생성하고 시작하는지, 그리고 그 프로세스가 첫 번째 시스템 콜을 수행하는지 살펴보겠습니다. 이러한 작업을 추적함으로써 xv6가 어떻게 프로세스에 대한 강력한 격리를 제공하는지 자세히 살펴볼 수 있습니다. 강력한 격리를 제공하는 첫 번째 단계는 커널이 자체 주소 공간에서 실행되도록 설정하는 것입니다.</p>
 <p>When a PC powers on, it initializes itself and then loads a boot loader from disk into memory and executes it. Appendix B explains the details. Xv6’s boot loader loads the xv6 kernel from disk and executes it starting at entry (1044). The x86 paging hardware is not enabled when the kernel starts; virtual addresses map directly to physical addresses.</p>
@@ -288,7 +348,23 @@
 <p>페이징이 활성화된 후에도 프로세서는 여전히 낮은 주소에서 명령어를 실행하고 있습니다. 이는 entrypgdir이 낮은 주소를 매핑하기 때문에 작동합니다. 만약 xv6가 entrypgdir에서 entry 0을 제외했다면, 페이징을 활성화하는 명령어 뒤에 있는 명령어를 실행하려고 할 때 컴퓨터가 충돌했을 것입니다.</p>
 <p>Now entry needs to transfer to the kernel’s C code, and run it in high memory. First it makes the stack pointer, %esp, point to memory to be used as a stack (1058). All symbols have high addresses, including stack, so the stack will still be valid even when the low mappings are removed. Finally entry jumps to main, which is also a high address. The indirect jump is needed because the assembler would otherwise generate a PC-relative direct jump, which would execute the low-memory version of main. Main cannot return, since the there’s no return PC on the stack. Now the kernel is running in high addresses in the function main (1217).</p>
 <p>이제 entry는 커널의 C 코드로 전환하여 높은 메모리에서 실행해야 합니다. 먼저 스택 포인터인 %esp를 스택으로 사용될 메모리를 가리키도록 설정합니다(1058). 모든 심볼은 높은 주소를 갖기 때문에, 낮은 매핑이 제거되더라도 스택은 여전히 유효합니다. 마지막으로 entry는 main으로 점프합니다. main 역시 높은 주소입니다. 이러한 간접 점프가 필요한 이유는 어셈블러가 그렇지 않으면 PC 상대적 직접 점프를 생성하게 되어 낮은 메모리 버전의 main이 실행됩니다. main은 반환할 수 없습니다. 왜냐하면 스택에 반환 PC가 없기 때문입니다. 이제 커널은 main 함수(1217) 내에서 높은 주소에서 실행되고 있습니다.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="code-creating-the-first-process"><a class="header" href="#code-creating-the-first-process">Code: creating the first process</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성 (this page)</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="code-creating-the-first-process"><a class="header" href="#code-creating-the-first-process">Code: creating the first process</a></h1>
 <p>Now we’ll look at how the kernel creates user-level processes and ensures that they are strongly isolated.</p>
 <p>이제 커널이 사용자 수준 프로세스를 생성하고 이들이 강력하게 격리되도록 보장하는 방법을 살펴보겠습니다.</p>
 <p>After main (1217) initializes several devices and subsystems, it creates the first process by calling userinit (2520). Userinit’s first action is to call <code>allocproc</code>. The job of <code>allocproc</code> (2473) is to allocate a slot (a struct proc) in the process table and to initialize the parts of the process’s state required for its kernel thread to execute. <code>allocproc</code> is called for each new process, while userinit is called only for the very first process. <code>allocproc</code> scans the proc table for a slot with state UNUSED (2480-2482). When it finds an unused slot, <code>allocproc</code> sets the state to EMBRYO to mark it as used and gives the process a unique pid (2469-2489). Next, it tries to allocate a kernel stack for the process’s kernel thread. If the memory allocation fails, <code>allocproc</code> changes the state back to UNUSED and returns zero to signal failure.</p>
@@ -312,7 +388,23 @@
 <p>userinit 함수는 주로 디버깅을 위해 p-&gt;name을 initcode로 설정합니다. p-&gt;cwd를 설정함으로써 프로세스의 현재 작업 디렉터리를 설정합니다. namei 함수를 6장에서 자세히 살펴보겠습니다.</p>
 <p>Once the process is initialized, userinit marks it available for scheduling by setting p-&gt;state to RUNNABLE.</p>
 <p>프로세스가 초기화되면 userinit 함수는 p-&gt;state를 RUNNABLE로 설정하여 이를 스케줄링할 수 있도록 표시합니다.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="code-running-the-first-process"><a class="header" href="#code-running-the-first-process">Code: Running the first process</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행 (this page)</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="code-running-the-first-process"><a class="header" href="#code-running-the-first-process">Code: Running the first process</a></h1>
 <p>Now that the first process’s state is prepared, it is time to run it. After main calls userinit, mpmain calls scheduler to start running processes (1257). Scheduler (2758) looks for a process with p-&gt;state set to RUNNABLE, and there’s only one: initproc. It sets the per-cpu variable proc to the process it found and calls switchuvm to tell the hardware to start using the target process’s page table (1879). Changing page tables while executing in the kernel works because setupkvm causes all processes’ page tables to have identical mappings for kernel code and data. switchuvm also sets up a task state segment SEG_TSS that instructs the hardware to execute system calls and interrupts on the process’s kernel stack. We will re-examine the task state segment in Chapter 3.</p>
 <p>첫 번째 프로세스의 상태가 준비되었으므로 이를 실행할 시간입니다. main 함수가 userinit를 호출한 후, mpmain은 프로세스를 실행하기 위해 스케줄러를 호출합니다(1257). 스케줄러(2758)는 p-&gt;state가 RUNNABLE로 설정된 프로세스를 찾아봅니다. 여기서는 initproc라는 하나의 프로세스만 있습니다. 스케줄러는 찾은 프로세스를 per-cpu 변수 proc에 설정하고, 해당 프로세스의 페이지 테이블을 사용하도록 하드웨어에 지시하기 위해 switchuvm 함수를 호출합니다(1879). 커널에서 실행 중에 페이지 테이블을 변경하는 것은 setupkvm 때문에 모든 프로세스의 페이지 테이블이 커널 코드와 데이터에 대해 동일한 매핑을 갖게 되기 때문에 작동합니다. switchuvm 함수는 또한 프로세스의 커널 스택에서 시스템 호출과 인터럽트를 실행하도록 하드웨어에 지시하는 작업 상태 세그먼트 SEG_TSS를 설정합니다. 작업 상태 세그먼트에 대해서는 3장에서 다시 살펴보겠습니다.</p>
 <p>scheduler now sets p-&gt;state to RUNNING and calls swtch (3059) to perform a context switch to the target process’s kernel thread. swtch first saves the current registers. The current context is not a process but rather a special per-cpu scheduler context, so scheduler tells swtch to save the current hardware registers in per-cpu storage (cpu-&gt;scheduler) rather than in any process’s kernel thread context. swtch then loads the saved registers of the target kernel thread (p-&gt;context) into the x86 hardware registers, including the stack pointer and instruction pointer. We’ll examine swtch in more detail in Chapter 5. The final ret instruction (3078) pops the target process’s %eip from the stack, finishing the context switch. Now the processor is running on the kernel stack of process p.</p>
@@ -321,7 +413,23 @@
 <p>allocproc 함수는 이전에 initproc의 p-&gt;context-&gt;eip를 forkret로 설정했기 때문에 ret 명령어를 사용하여 forkret 함수가 실행됩니다. 첫 번째 호출(현재 호출)에서 forkret 함수(2853)는 초기화 함수를 실행합니다. 이 함수들은 main에서 실행될 수 없으며, 정규 프로세스의 커널 스택을 사용하여 실행되어야 합니다. 그런 다음 forkret 함수는 반환됩니다. allocproc 함수는 p-&gt;context 이후 스택의 최상위 워드가 trapret이 되도록 배열했기 때문에 이제 trapret이 시작되어 %esp가 p-&gt;tf로 설정되면서 실행됩니다. trapret 함수(3324)는 swtch 함수와 마찬가지로 커널 컨텍스트를 복원할 때와 동일한 방식으로 트랩 프레임(0602)에서 레지스터를 복원하기 위해 pop 명령어를 사용합니다. popal 명령어를 사용하여 일반 레지스터를 복원한 후, popl 명령어를 사용하여 %gs, %fs, %es, %ds 레지스터를 복원합니다. addl 명령어는 trapno와 errcode 필드를 건너뛰게 됩니다. 마지막으로 iret 명령어는 스택에서 %cs, %eip, %flags, %esp, %ss를 팝하여 실행될 다음 위치를 지정합니다. 트랩 프레임의 내용이 CPU 상태로 전송되었으므로 프로세서는 트랩 프레임에서 지정된 %eip에서 계속 실행됩니다. initproc의 경우 이는 <code>initcode.S</code>의 첫 번째 명령어인 가상 주소 0입니다.</p>
 <p>At this point, %eip holds zero and %esp holds 4096. These are virtual addresses in the process’s address space. The processor’s paging hardware translates them into physical addresses. allocuvm has set up the process’s page table so that virtual address zero refers to the physical memory allocated for this process, and set a flag (PTE_U) that tells the paging hardware to allow user code to access that memory. The fact that userinit (2533) set up the low bits of %cs to run the process’s user code at CPL=3 means that the user code can only use pages with PTE_U set, and cannot modify sensitive hardware registers such as %cr3. So the process is constrained to using only its own memory.</p>
 <p>이 시점에서 %eip는 0이고 %esp는 4096을 가리킵니다. 이들은 프로세스의 주소 공간 내의 가상 주소입니다. 프로세서의 페이징 하드웨어는 이를 물리 주소로 변환합니다. allocuvm 함수는 프로세스의 페이지 테이블을 설정하여 가상 주소 0이 이 프로세스에 할당된 물리 메모리를 가리키도록하고, 페이징 하드웨어에게 해당 메모리에 대한 액세스를 허용하도록 하는 플래그 (PTE_U)를 설정했습니다. userinit 함수(2533)가 %cs의 하위 비트를 설정하여 CPL=3에서 프로세스의 사용자 코드를 실행한다는 사실은 사용자 코드가 PTE_U가 설정된 페이지만 사용하고 %cr3와 같은 중요한 하드웨어 레지스터를 수정할 수 없다는 것을 의미합니다. 따라서 프로세스는 자신의 메모리만 사용할 수 있도록 제한됩니다.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-first-system-call-exec"><a class="header" href="#the-first-system-call-exec">The first system call: exec</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec (this page)</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="the-first-system-call-exec"><a class="header" href="#the-first-system-call-exec">The first system call: exec</a></h1>
 <p>Now that we have seen how the kernel provides strong isolation for processes, let’s look at how a user-level process re-enters the kernel to ask for services that it cannot perform itself.</p>
 <p>이제 우리는 커널이 프로세스에 대한 강력한 격리를 제공하는 방법을 살펴보았으니, 이제 사용자 레벨 프로세스가 스스로 수행할 수 없는 서비스를 요청하기 위해 커널로 다시 진입하는 방법을 살펴보겠습니다.</p>
 <p>The first action of <code>initcode.S</code> is to invoke the exec system call. As we saw in Chapter 0, exec replaces the memory and registers of the current process with a new program, but it leaves the file descriptors, process id, and parent process unchanged.</p>
@@ -332,12 +440,44 @@
 <p>다른 인자는 명령행 인수의 argv 배열이며, 배열 끝에 있는 0은 그 끝을 나타냅니다. exec가 실패하고 반환하면, initcode는 exit 시스템 콜을 계속 호출하는 루프를 실행합니다. 이때 exit는 절대로 반환해서는 안됩니다 (8416-8420). 이 코드는 첫 번째 시스템 콜을 일반 시스템 콜처럼 보이도록 수동으로 조작하는 것입니다. 이러한 설정은 첫 번째 프로세스 (이 경우에는 첫 번째 시스템 콜)를 특별 케이스로 처리하지 않고, 대신 xv6가 표준 작업을 위해 제공해야 하는 코드를 재사용하는 방식을 사용합니다. (Chapter 3에서 더 자세히 다룰 예정입니다.)</p>
 <p>Chapter 2 will cover the implementation of exec in detail, but at a high level it replaces initcode with the /init binary, loaded out of the file system. Now initcode (8400) is done, and the process will run /init instead. Init (8510) creates a new console device file if needed and then opens it as file descriptors 0, 1, and 2. Then it loops, starting a console shell, handles orphaned zombies until the shell exits, and repeats. The system is up.</p>
 <p>2장에서는 exec의 구현을 자세히 다룰 것입니다. 그러나 높은 수준에서 보면 exec은 initcode를 파일 시스템에서 불러온 /init 바이너리로 교체합니다. 이제 initcode (8400)는 완료되었고, 프로세스는 대신 /init을 실행할 것입니다. Init (8510)은 필요한 경우 새 콘솔 디바이스 파일을 생성하고 파일 디스크립터 0, 1 및 2로 엽니다. 그런 다음 콘솔 쉘을 시작하고, 쉘이 종료될 때까지 고아 된 좀비 프로세스를 처리하고, 이를 반복합니다. 시스템이 구동됩니다.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="real-world"><a class="header" href="#real-world">Real world</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서 (this page)</a></li>
+<li><a href="./chapter_1-10.html">연습문제</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="real-world"><a class="header" href="#real-world">Real world</a></h1>
 <p>In the real world, one can find both monolithic kernels and microkernels. Many Unix kernels are monolithic. For example, Linux has a monolithic kernel, although some OS functions run as user-level servers (e.g., the windowing system). Kernels such as L4, Minix, QNX are organized as a microkernel with servers, and have seen wide deployment in embedded settings.</p>
 <p>실제 세계에서는 모놀리식 커널과 마이크로커널을 모두 찾아볼 수 있습니다. 많은 Unix 커널은 모놀리식입니다. 예를 들어, 리눅스는 모놀리식 커널을 가지고 있지만 일부 OS 기능은 사용자 수준 서버로 실행됩니다 (예: 윈도잉 시스템). L4, Minix, QNX와 같은 커널은 서버를 가진 마이크로커널로 구성되어 있으며 임베디드 환경에서 널리 사용됩니다.</p>
 <p>Most operating systems have adopted the process concept, and most processes look similar to xv6’s. A real operating system would find free proc structures with an explicit free list in constant time instead of the linear-time search in allocproc; xv6 uses the linear scan (the first of many) for simplicity.</p>
 <p>대부분의 운영 체제는 프로세스 개념을 채택하고, 대부분의 프로세스가 xv6와 유사한 구조를 가지고 있습니다. 실제 운영 체제에서는 상수 시간 내에 명시적인 프리 리스트를 사용하여 빈 프로세스 구조체를 찾을 것이며, allocproc의 선형 시간 검색과는 다른 방법을 사용할 것입니다. xv6는 간단함을 위해 선형 검색을 사용합니다 (많은 다른 검색 중 하나).</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="exercises"><a class="header" href="#exercises">Exercises</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="./chapter_1.html">운영체제 구조</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+<li><a href="./chapter_1-4.html">프로세스 개요</a></li>
+<li><a href="./chapter_1-5.html">코드: 첫 번째 주소 공간</a></li>
+<li><a href="./chapter_1-6.html">코드: 첫 번째 프로세스 생성</a></li>
+<li><a href="./chapter_1-7.html">코드: 첫 번째 프로세스 실행</a></li>
+<li><a href="./chapter_1-8.html">코드: 첫 번째 시스템콜 - exec</a></li>
+<li><a href="./chapter_1-9.html">현실 세계에서</a></li>
+<li><a href="./chapter_1-10.html">연습문제 (this page)</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="exercises"><a class="header" href="#exercises">Exercises</a></h1>
 <ol>
 <li>
 <p>Set a breakpoint at swtch. Single step with gdb’s <code>stepi</code> through the ret to forkret, then use gdb’s finish to proceed to trapret, then <code>stepi</code> until you get to initcode at virtual address zero.</p>
