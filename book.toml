@@ -1,0 +1,6 @@
+[book]
+authors = ["hyeyoom"]
+language = "en"
+multilingual = false
+src = "src"
+title = "xv6-x86 lecture note"
