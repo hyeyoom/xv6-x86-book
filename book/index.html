@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>운영체제 구조 - xv6-x86 lecture note</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html" class="active"><strong aria-hidden="true">1.</strong> 운영체제 구조</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_1-1.html"><strong aria-hidden="true">1.1.</strong> 물리적 리소스 추상화</a></li><li class="chapter-item expanded "><a href="chatper_1-2.html"><strong aria-hidden="true">1.2.</strong> 유저모드, 커널모드 그리고 시스템콜</a></li><li class="chapter-item expanded "><a href="chapter_1-3.html"><strong aria-hidden="true">1.3.</strong> 커널 구조</a></li><li class="chapter-item expanded "><a href="chapter_1-4.html"><strong aria-hidden="true">1.4.</strong> 프로세스 개요</a></li><li class="chapter-item expanded "><a href="chapter_1-5.html"><strong aria-hidden="true">1.5.</strong> 코드: 첫 번째 주소 공간</a></li><li class="chapter-item expanded "><a href="chapter_1-6.html"><strong aria-hidden="true">1.6.</strong> 코드: 첫 번째 프로세스 생성</a></li><li class="chapter-item expanded "><a href="chapter_1-7.html"><strong aria-hidden="true">1.7.</strong> 코드: 첫 번째 프로세스 실행</a></li><li class="chapter-item expanded "><a href="chapter_1-8.html"><strong aria-hidden="true">1.8.</strong> 코드: 첫 번째 시스템콜 - exec</a></li><li class="chapter-item expanded "><a href="chapter_1-9.html"><strong aria-hidden="true">1.9.</strong> 현실 세계에서</a></li><li class="chapter-item expanded "><a href="chapter_1-10.html"><strong aria-hidden="true">1.10.</strong> 연습문제</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">xv6-x86 lecture note</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <ul>
+<li><a href="./chapter_1.html">운영체제 구조 (이 페이지)</a>
+<ul>
+<li><a href="./chapter_1-1.html">물리적 리소스 추상화</a></li>
+<li><a href="./chatper_1-2.html">유저모드, 커널모드 그리고 시스템콜</a></li>
+<li><a href="./chapter_1-3.html">커널 구조</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="operating-system-organization"><a class="header" href="#operating-system-organization">Operating system organization</a></h1>
+<p>A key requirement for an operating system is to support several activities at once. For example, using the system call interface described in chapter 0 a process can start new processes with fork. The operating system must time-share the resources of the computer among these processes. For example, even if there are more processes than there are hardware processors, the operating system must ensure that all of the processes make progress. The operating system must also arrange for isolation between the processes. That is, if one process has a bug and fails, it shouldn’t affect processes that don’t depend on the failed process. Complete isolation, however, is too strong, since it should be possible for processes to interact; pipelines are an example. Thus an operating system must fulfil three requirements: multiplexing, isolation, and interaction.</p>
+<p>운영체제의 중요한 요구사항 중 하나는 여러 동작을 동시에 지원하는 것입니다. 예를 들어, 챕터 0에서 설명한 시스템콜 인터페이스를 사용하면 프로세스는 fork를 사용하여 새로운 프로세스를 시작할 수 있습니다. 운영체제는 컴퓨터의 자원을 이러한 프로세스들 사이에서 시분할해야 합니다. 예를 들어, 하드웨어 프로세서보다 더 많은 프로세스가 있는 경우라도, 운영체제는 모든 프로세스가 진행되도록 보장해야 합니다. 또한, 운영체제는 프로세스 간의 격리를 조율해야합니다. 즉, 한 프로세스에 버그가 있고 실패하는 경우에도 해당 프로세스에 의존하지 않는 다른 프로세스에 영향을 미치면 안됩니다. 하지만 완전한 격리는 지나치게 강력합니다. 왜냐하면 프로세스가 상호작용할 수 있어야 하기 때문입니다. 예를 들어, 파이프라인이 그런 예입니다. 따라서 운영체제는 세 가지 요구 사항을 충족해야 합니다: 멀티플렉싱, 격리 그리고 상호작용</p>
+<p>This chapter provides an overview of how operating systems are organized to achieve these 3 requirements. It turns out there are many ways to do so, but this text focuses on mainstream designs centered around a monolithic kernel, which is used by many Unix operating systems. This chapter introduces xv6’s design by tracing the creation of the first process when xv6 starts running. In doing so, the text provides a glimpse of the implementation of all major abstractions that xv6 provides, how they interact, and how the three requirements of multiplexing, isolation, and interaction are met. Most of xv6 avoids special-casing the first process, and instead reuses code that xv6 must provide for standard operation. Subsequent chapters will explore each abstraction in more detail.</p>
+<p>이 장에서는 운영체제가 이러한 3가지 요구 사항을 충족하기 위해 어떻게 구성되는지에 대한 개요를 제공합니다. 실제로 이를 달성하기 위한 다양한 방법이 있지만, 이 교과서는 유닉스 운영체제를 사용하는 많은 운영체제에서 사용되는 모놀리식 커널을 중심으로 한 주류 디자인에 초점을 맞추고 있습니다. 이 장에서는 xv6이 실행되기 시작할 때 첫 번째 프로세스가 생성되는 과정을 따라가며 xv6이 제공하는 모든 주요 추상화의 구현을 엿볼 수 있도록 합니다. 이를 통해 이 텍스트는 이러한 추상화가 어떻게 상호작용하며 다중화, 격리 및 상호작용이라는 세 가지 요구 사항이 어떻게 충족되는지를 보여줍니다. xv6의 대부분은 첫 번째 프로세스에 대해 특별한 경우를 회피하고 대신 표준 작동을 위해 xv6이 제공해야 하는 코드를 재사용합니다. 이어지는 장에서는 각 추상화를 더 자세히 탐구할 것입니다.</p>
+<p>Xv6 runs on Intel 80386 or later (<code>x86</code>) processors on a PC platform, and much of its low-level functionality (for example, its process implementation) is x86-specific. This book assumes the reader has done a bit of machine-level programming on some architecture, and will introduce x86-specific ideas as they come up. Appendix A briefly outlines the PC platform.</p>
+<p>xv6는 인텔 80386 이상 (<code>x86</code>) 프로세서가 장착된 PC 플랫폼에서 실행됩니다. 그리고 그 중 많은 저수준 기능(예: 프로세스 구현)은 x86 아키텍처에 특화되어 있습니다. 이 책은 독자가 어떤 아키텍처에서 조금의 머신 레벨 프로그래밍을 해본 경험이 있다고 가정하며, x86 특정 아이디어를 필요에 따라 소개할 것입니다. 부록 A에서는 PC 플랫폼에 대한 간략한 개요가 제공됩니다.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="chapter_1-1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="chapter_1-1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
